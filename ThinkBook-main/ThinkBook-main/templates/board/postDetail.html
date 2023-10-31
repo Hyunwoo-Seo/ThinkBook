@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+<!-- {{post.update_counter}} -->
+<div class="container-fluid">
+    <div class="">
+            <div class="m-5">
+            <table class="table table-bordered table-striped">
+                <tr>
+                    <th scope="row">글 번호</th>
+                    <td>{{ post.pk }}</td>
+                    <th scope="row">조회수</th>
+                    <td>{{ post.hit }}</td>
+                </tr>
+
+                <tr>
+                    <th scope="row">제목</th>
+                    <td>{{ post.subject }}</td>
+                    <th score="row">작성자</th>
+                    <td>{{ post.member_id }}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="border m-5">
+            <p>
+                {{ post.content }}
+            </p>
+        </div>
+
+        <div class="border m-5">
+            <table class="table table-bordered table-stripted">
+
+            </table>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="댓글을 입력해주세요" aria-label="댓글을 입력해주세요" aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary" type="button">댓글 달기</button>
+                </div>
+              </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="position-relative row">
+  <div class="card col-lg-3" style="width: 10rem;">
+    <div class="card-body">
+      {% if user.is_authenticated %}
+      <h5 class="card-title mb-5">{{ user.username }}</h5>
+      <div class="row">
+        <div class="col text-center">
+          <a href="{% url 'board:post_create' %}" class="btn btn-primary">글쓰기</a>
+        </div>
+      </div>
+      {% else %}
+      <h5 class="card-title mb-5">Login Require</h5>
+      <div class="row">
+        <div class="col text-center">
+          <a href="{% url 'accounts:login' %}" class="btn btn-primary">Login</a>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="container mx-5 my-3 col">
+    <table class="table">
+        <thead>
+        <tr class="table-dark">
+            <th>번호</th>
+            <th>제목</th>
+            <th>작성일시</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% if post_list %}
+          {% for post in post_list %}
+          <tr>
+              <td>{{ post.id }}</td>
+              <td>
+                  <a href="{% url 'board:post_detail' post.id %}">{{ post.subject }}</a>
+              </td>
+              <td>{{ post.created_at }}</td>
+          </tr>
+          {% endfor %}
+        {% else %}
+        <tr>
+            <td colspan="3">질문이 없습니다.</td>
+        </tr>
+        {% endif %}
+        </tbody>
+    </table>
+</div>
+
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <p><strong></strong></p>
+    </div>
+  </div>
+</div>
+</div>
+
+{% endblock %}
